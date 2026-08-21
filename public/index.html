@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seja representante Anela — semijoias em consignado</title>
+<meta name="description" content="Maleta de semijoias em consignado, sem taxa para começar. Fale com a Bia no WhatsApp. Campinas e região.">
+<meta name="robots" content="noindex">
+<!-- VERIFICACAO DE DOMINIO DO META: trocar o content pelo token que o Business Suite gerar -->
+<meta name="facebook-domain-verification" content="SUBSTITUIR_PELO_TOKEN_DO_META">
+<meta property="og:title" content="Seja representante Anela">
+<meta property="og:description" content="Maleta de semijoias em consignado. Fale com a Bia no WhatsApp.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Karla:wght@400;500;600&display=swap">
+<style>
+:root{
+  --areia:#F6F3EE; --papel:#FFF; --tinta:#22201D; --tinta2:#5B554D; --tinta3:#8A8378;
+  --latao:#8A6423; --latao-claro:#EFE3CE; --fio:#E2DCD2; --verde:#2C6049;
+  --zap-verde:#137A45; --alerta:#93302A;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--areia);color:var(--tinta);
+  font-family:Karla,system-ui,-apple-system,"Segoe UI",sans-serif;font-size:17px;line-height:1.6}
+img{max-width:100%;display:block}
+h1,h2,h3{font-family:Marcellus,Georgia,serif;font-weight:400;letter-spacing:-.01em;text-wrap:balance;margin:0}
+.wrap{max-width:680px;margin:0 auto;padding:0 20px}
+.eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--latao);font-weight:600;margin:0 0 14px}
+
+/* ---------- o unico botao da pagina ---------- */
+.cta{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;
+  background:var(--zap-verde);color:#fff;border:0;padding:17px 20px;
+  font:600 17px Karla,sans-serif;border-radius:2px;cursor:pointer;text-decoration:none;
+  transition:filter .18s ease}
+.cta:hover{filter:brightness(1.08)}
+.cta:focus-visible{outline:3px solid var(--latao);outline-offset:2px}
+.cta svg{flex:0 0 auto}
+.sob-cta{font-size:13.5px;color:var(--tinta3);margin:11px 0 0;text-align:center}
+
+/* ---------- 1. parar o scroll ---------- */
+.hero{padding:34px 0 30px}
+.hero h1{font-size:clamp(30px,7.4vw,44px);line-height:1.12;margin-bottom:14px}
+.hero p.sub{font-size:clamp(17px,4vw,19px);color:var(--tinta2);margin:0 0 22px}
+
+/* ---------- vitrine ---------- */
+.vitrine{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:26px 0 0}
+.vitrine figure{margin:0;aspect-ratio:1/1;background:var(--latao-claro);position:relative;overflow:hidden}
+.vitrine img{width:100%;height:100%;object-fit:cover}
+.vitrine .vazio{display:flex;align-items:center;justify-content:center;height:100%;
+  font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--latao);text-align:center;padding:8px}
+.legenda-vitrine{font-size:13px;color:var(--tinta3);margin:10px 0 0;text-align:center}
+
+/* ---------- confianca ---------- */
+.provas{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--fio);
+  border:1px solid var(--fio);margin:28px 0 0}
+.prova{background:var(--papel);padding:16px 12px;text-align:center}
+.prova b{display:block;font-family:Marcellus,serif;font-size:clamp(21px,5.4vw,27px);color:var(--latao);line-height:1}
+.prova span{display:block;font-size:12px;color:var(--tinta3);margin-top:7px;line-height:1.35}
+
+section{padding:36px 0;border-top:1px solid var(--fio)}
+section h2{font-size:clamp(23px,5.6vw,30px);line-height:1.2;margin-bottom:8px}
+section p{color:var(--tinta2);margin:0 0 14px}
+
+.passos{list-style:none;padding:0;margin:20px 0 0;counter-reset:pass}
+.passos li{counter-increment:pass;display:grid;grid-template-columns:34px 1fr;gap:14px;
+  padding:14px 0;border-top:1px solid var(--fio)}
+.passos li::before{content:counter(pass);font-family:Marcellus,serif;font-size:19px;color:var(--latao);line-height:1.3}
+.passos b{display:block;margin-bottom:3px}
+.passos span{color:var(--tinta2);font-size:15.5px}
+
+.duas{display:grid;gap:1px;background:var(--fio);border:1px solid var(--fio);margin-top:20px}
+.col{background:var(--papel);padding:20px}
+.col h3{font-size:17px;margin-bottom:12px}
+.col ul{margin:0;padding-left:20px;color:var(--tinta2);font-size:15.5px}
+.col li{margin-bottom:8px}
+.col.sim h3{color:var(--verde)} .col.nao h3{color:var(--alerta)}
+
+details{border-top:1px solid var(--fio);padding:14px 0}
+details summary{cursor:pointer;font-weight:600;font-size:16px;list-style:none;display:flex;
+  justify-content:space-between;gap:14px;align-items:center}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:"+";color:var(--latao);font-size:21px;line-height:1;flex:0 0 auto}
+details[open] summary::after{content:"–"}
+details p{margin:11px 0 0;font-size:15.5px}
+
+.fecho{background:var(--papel);border:1px solid var(--fio);padding:26px 20px;margin-top:8px;text-align:center}
+.fecho h2{margin-bottom:10px}
+.fecho p{margin-bottom:20px}
+
+/* barra fixa no celular: o botao nunca some da tela */
+.barra{position:fixed;left:0;right:0;bottom:0;padding:10px 16px calc(10px + env(safe-area-inset-bottom));
+  background:rgba(246,243,238,.94);border-top:1px solid var(--fio);backdrop-filter:blur(6px);z-index:9}
+.barra .cta{max-width:648px;margin:0 auto}
+body{padding-bottom:86px}
+@media (min-width:700px){.barra{display:none}body{padding-bottom:0}}
+
+footer{padding:26px 0 40px;font-size:13px;color:var(--tinta3);line-height:1.7}
+footer a{color:var(--tinta3)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<main class="wrap">
+
+  <!-- 1. PARAR O SCROLL -->
+  <header class="hero">
+    <p class="eyebrow">Anela Acessórios · Campinas e região</p>
+    <h1>Semijoias em consignado para quem já sabe vender</h1>
+    <p class="sub">Você recebe a maleta, vende para a sua rede e fica com a comissão. Sem taxa para começar e sem comprar estoque — com <strong>análise de cadastro</strong>, porque a maleta fica sob a sua responsabilidade.</p>
+    <a href="#" class="cta zap" data-pos="topo">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.2 1.3-2 1.4-.5.1-1.2.2-3.5-.8-2.9-1.2-4.8-4.2-5-4.4-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.4.7-.4h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.5c-.1.2-.3.3-.1.6.1.3.7 1.2 1.5 1.9 1 .9 1.8 1.2 2.1 1.3.2.1.4.1.6-.1l.8-1c.2-.2.3-.2.6-.1l2 1c.3.1.4.2.5.3.1.2.1.7-.1 1.3Z"/></svg>
+      Falar com a Bia no WhatsApp
+    </a>
+    <p class="sob-cta">A Bia responde e te explica como funciona</p>
+
+    <!-- vitrine: as fotos entram aqui (ver README, secao FOTOS) -->
+    <div class="vitrine" id="vitrine">
+      <figure><div class="vazio">foto da maleta</div></figure>
+      <figure><div class="vazio">foto das peças</div></figure>
+      <figure><div class="vazio">foto de representante</div></figure>
+      <figure><div class="vazio">colar</div></figure>
+      <figure><div class="vazio">brincos</div></figure>
+      <figure><div class="vazio">anéis</div></figure>
+    </div>
+    <p class="legenda-vitrine">Peças folheadas a ouro, com garantia da marca.</p>
+
+    <!-- numeros medidos no JUERI em 21/08/2026 -->
+    <div class="provas">
+      <div class="prova"><b>290+</b><span>representantes já venderam com a Anela</span></div>
+      <div class="prova"><b>2019</b><span>ano em que a Anela começou</span></div>
+      <div class="prova"><b>R$ 0</b><span>de taxa para começar</span></div>
+    </div>
+  </header>
+
+  <section>
+    <h2>Como funciona</h2>
+    <p>É consignado: você não compra o estoque, você recebe para vender.</p>
+    <ol class="passos">
+      <li><div><b>Você chama a Bia no WhatsApp</b><span>Ela te explica o modelo e te envia o formulário de cadastro.</span></div></li>
+      <li><div><b>Passa pela análise</b><span>Cadastro, consulta de CPF e uma conversa por vídeo. Nem todo cadastro é aprovado.</span></div></li>
+      <li><div><b>Recebe a maleta em consignado</b><span>As peças chegam sem custo de entrada e ficam sob a sua responsabilidade enquanto estiverem com você.</span></div></li>
+      <li><div><b>Vende e presta contas</b><span>Você repassa o valor das peças vendidas e fica com a sua comissão.</span></div></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Para quem esse trabalho funciona</h2>
+    <p>Sendo honesta antes de você perder tempo:</p>
+    <div class="duas">
+      <div class="col sim">
+        <h3>Costuma dar certo com quem</h3>
+        <ul>
+          <li>já vendeu alguma coisa antes — roupa, cosmético, semijoia, qualquer coisa</li>
+          <li>conversa com muita gente toda semana e tem a confiança dessas pessoas</li>
+          <li>já tem uma renda e quer somar a esta</li>
+          <li>mora em Campinas ou região</li>
+        </ul>
+      </div>
+      <div class="col nao">
+        <h3>Não costuma dar certo com quem</h3>
+        <ul>
+          <li>procura ganho rápido e garantido — isso não existe aqui</li>
+          <li>não tem com quem falar sobre as peças</li>
+          <li>não quer se responsabilizar pela maleta</li>
+          <li>já revende semijoia de outra marca</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Perguntas que todo mundo faz</h2>
+    <details><summary>Preciso pagar alguma coisa para começar?</summary><p>Não. Não existe taxa de adesão, kit obrigatório nem compra de estoque. A maleta vai para você em consignado.</p></details>
+    <details><summary>Quanto eu ganho?</summary><p>Você ganha uma comissão sobre o que vender — quanto, depende de você e da sua rede. A gente não promete valor: marca que garante ganho fixo está te enganando.</p></details>
+    <details><summary>Preciso ter experiência com semijoia?</summary><p>Com semijoia, não. Mas precisa saber vender e ter para quem vender — é o que a análise olha.</p></details>
+    <details><summary>Por que tem análise de cadastro?</summary><p>Porque a maleta sai daqui sem você pagar nada por ela. A análise protege os dois lados e inclui consulta de CPF.</p></details>
+    <details><summary>Sou de fora de Campinas. Posso?</summary><p>Pode falar com a gente. Hoje a maior parte das representantes está em Campinas e região, então fora daí a análise é caso a caso.</p></details>
+  </section>
+
+  <div class="fecho">
+    <h2>Quer saber se faz sentido pra você?</h2>
+    <p>Chama a Bia. Ela te explica o modelo e, se fizer sentido, te manda o cadastro.</p>
+    <a href="#" class="cta zap" data-pos="fecho">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.2 1.3-2 1.4-.5.1-1.2.2-3.5-.8-2.9-1.2-4.8-4.2-5-4.4-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.4.7-.4h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.5c-.1.2-.3.3-.1.6.1.3.7 1.2 1.5 1.9 1 .9 1.8 1.2 2.1 1.3.2.1.4.1.6-.1l.8-1c.2-.2.3-.2.6-.1l2 1c.3.1.4.2.5.3.1.2.1.7-.1 1.3Z"/></svg>
+      Falar com a Bia no WhatsApp
+    </a>
+  </div>
+
+  <footer>
+    Anela Acessórios · Campinas/SP · <a href="/privacidade">Política de privacidade</a><br>
+    A maleta é entregue em consignado e permanece sob responsabilidade da representante. O cadastro passa por análise e nem todo cadastro é aprovado.
+  </footer>
+</main>
+
+<!-- no celular o botao acompanha a rolagem: a pagina tem UMA saida, e ela nunca some -->
+<div class="barra">
+  <a href="#" class="cta zap" data-pos="barra">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.2 1.3-2 1.4-.5.1-1.2.2-3.5-.8-2.9-1.2-4.8-4.2-5-4.4-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.4.7-.4h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.5c-.1.2-.3.3-.1.6.1.3.7 1.2 1.5 1.9 1 .9 1.8 1.2 2.1 1.3.2.1.4.1.6-.1l.8-1c.2-.2.3-.2.6-.1l2 1c.3.1.4.2.5.3.1.2.1.7-.1 1.3Z"/></svg>
+    Falar com a Bia no WhatsApp
+  </a>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  // ============================================================================
+  // O CONSERTO DO BURACO MEDIDO: "qual criativo trouxe a rep que paga?"
+  // A LP manda a pessoa pro WhatsApp e, ate hoje, a origem MORRIA nesse pulo.
+  // Aqui a origem vira um CODIGO CURTO que entra no TEXTO da primeira mensagem.
+  // A Kommo recebe esse texto -> da pra ligar o lead ao criativo que o trouxe.
+  // ============================================================================
+  var CFG = window.__ANELA__ || {};
+  var FONE = CFG.whatsapp || "5519989058111";
+
+  var q = new URLSearchParams(location.search);
+  function p(k) { return (q.get(k) || "").slice(0, 40); }
+
+  // event_id: o MESMO id vai pro pixel e pro CAPI -> o Meta deduplica (janela 48h)
+  var eventId = "lp-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 10);
+
+  // ref curto e legivel, que sobrevive dentro de uma mensagem de WhatsApp
+  var ref = [p("utm_source") || "direto", p("utm_campaign"), p("utm_content")]
+              .filter(Boolean).join("-").replace(/[^A-Za-z0-9_-]/g, "").slice(0, 48);
+
+  var texto = "Oi! Vi o anuncio e quero saber como ser representante da Anela. [ref:" + ref + "]";
+  var link = "https://wa.me/" + FONE + "?text=" + encodeURIComponent(texto);
+
+  Array.prototype.forEach.call(document.querySelectorAll("a.zap"), function (a) {
+    a.href = link;
+    a.addEventListener("click", function () {
+      // Evento RASO, so de apoio. O evento que ENSINA o Meta e o "formulario da
+      // Respondi preenchido", que sai da Kommo por CAPI -- nao daqui.
+      if (window.fbq) { fbq("track", "Contact", { content_name: ref }, { eventID: eventId }); }
+      // avisa o servidor pra registrar o clique com a origem (nao bloqueia a saida)
+      try {
+        var corpo = JSON.stringify({ ref: ref, event_id: eventId, pos: a.dataset.pos || "" });
+        if (navigator.sendBeacon) {
+          navigator.sendBeacon("/api/clique", new Blob([corpo], { type: "application/json" }));
+        }
+      } catch (e) { /* clique nunca pode quebrar por causa de medicao */ }
+    });
+  });
+})();
+</script>
+</body>
+</html>
