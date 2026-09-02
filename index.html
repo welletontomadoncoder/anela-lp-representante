@@ -32,9 +32,9 @@
 
   AINDA FALTA O DONO / DECISOES PENDENTES (procure no HTML):
     1. Razao social completa (nome de pessoa fisica) no rodape - decisao pendente
-    2. Depoimentos de representantes reais .. carrossel (3 placeholders no HTML)
-    3. "CONFIRMAR COM O DONO" em M5 - quais dos 6 blocos de apoio rodam hoje
-       (Mentorias / Maleta Virtual / Campanhas / Sorteios); "Sorteios" tem risco SECAP/Meta
+    2. Depoimentos: FEITOS (02/09) - 9 cartoes de imagem prontos em assets/depo-1..9
+    3. M5: os 6 blocos de apoio - dono confirmou que TODOS rodam (02/09); "Sorteios"
+       e interno por desempenho, nao promocao publica (decisao do dono)
   ============================================================================
 -->
 <html lang="pt-BR">
@@ -462,6 +462,11 @@ strong,b{font-weight:700}
 .depo figcaption{font-size:.9375rem;line-height:1.4;color:var(--apoio)}
 .depo figcaption b{display:block;color:var(--oliva)}
 .depo--vago blockquote{color:var(--apoio);font-style:italic}
+/* M8 — depoimentos: cartoes de imagem prontos (nome + foto + texto). Sem padding,
+   imagem inteira. Slide um pouco mais largo pra o texto do card ficar legivel. */
+.carrossel:not(.carrossel--fotos) .trilho > *{flex:0 0 min(90%,420px)}
+.depo--img{padding:0;overflow:hidden;background:var(--branco);min-height:0}
+.depo--img img{width:100%;height:auto;display:block}
 .setas{display:flex;gap:10px;justify-content:flex-end;margin-top:10px}
 .seta{
   width:44px;height:44px;border-radius:50%;
@@ -895,21 +900,51 @@ strong,b{font-weight:700}
       <div class="carrossel">
         <div class="trilho" id="trilho" tabindex="0" role="group"
              aria-label="Depoimentos de representantes. Arraste para o lado para ver mais.">
-          <!-- PLACEHOLDER: depoimento real -->
-          <figure class="depo depo--vago">
-            <blockquote>Depoimento em vídeo ou texto a incluir.</blockquote>
-            <figcaption><b>[Nome]</b><span>[cidade/UF]</span></figcaption>
-          </figure>
-          <!-- PLACEHOLDER: depoimento real -->
-          <figure class="depo depo--vago">
-            <blockquote>Depoimento em vídeo ou texto a incluir.</blockquote>
-            <figcaption><b>[Nome]</b><span>[cidade/UF]</span></figcaption>
-          </figure>
-          <!-- PLACEHOLDER: depoimento real -->
-          <figure class="depo depo--vago">
-            <blockquote>Depoimento em vídeo ou texto a incluir.</blockquote>
-            <figcaption><b>[Nome]</b><span>[cidade/UF]</span></figcaption>
-          </figure>
+          <figure class="depo depo--img"><picture>
+            <source srcset="assets/depo-1.webp" type="image/webp">
+            <img src="assets/depo-1.jpg" width="1000" height="1250" loading="lazy" decoding="async"
+                 alt="Depoimento de Íris Ferreira, representante da Anela.">
+          </picture></figure>
+          <figure class="depo depo--img"><picture>
+            <source srcset="assets/depo-2.webp" type="image/webp">
+            <img src="assets/depo-2.jpg" width="1000" height="1250" loading="lazy" decoding="async"
+                 alt="Depoimento de Thalita Rosa, representante da Anela.">
+          </picture></figure>
+          <figure class="depo depo--img"><picture>
+            <source srcset="assets/depo-3.webp" type="image/webp">
+            <img src="assets/depo-3.jpg" width="1000" height="1250" loading="lazy" decoding="async"
+                 alt="Depoimento de Juliana Barbosa, representante da Anela.">
+          </picture></figure>
+          <figure class="depo depo--img"><picture>
+            <source srcset="assets/depo-4.webp" type="image/webp">
+            <img src="assets/depo-4.jpg" width="1000" height="1250" loading="lazy" decoding="async"
+                 alt="Depoimento de Carolina Deschamps, representante da Anela.">
+          </picture></figure>
+          <figure class="depo depo--img"><picture>
+            <source srcset="assets/depo-5.webp" type="image/webp">
+            <img src="assets/depo-5.jpg" width="1000" height="1250" loading="lazy" decoding="async"
+                 alt="Depoimento de Bruna Leal, representante da Anela.">
+          </picture></figure>
+          <figure class="depo depo--img"><picture>
+            <source srcset="assets/depo-6.webp" type="image/webp">
+            <img src="assets/depo-6.jpg" width="1000" height="1250" loading="lazy" decoding="async"
+                 alt="Depoimento de Larissa Santos, representante da Anela.">
+          </picture></figure>
+          <figure class="depo depo--img"><picture>
+            <source srcset="assets/depo-7.webp" type="image/webp">
+            <img src="assets/depo-7.jpg" width="1000" height="1250" loading="lazy" decoding="async"
+                 alt="Depoimento de Mariana Almeida, representante da Anela.">
+          </picture></figure>
+          <figure class="depo depo--img"><picture>
+            <source srcset="assets/depo-8.webp" type="image/webp">
+            <img src="assets/depo-8.jpg" width="1000" height="1250" loading="lazy" decoding="async"
+                 alt="Depoimento de Arlanza, representante da Anela.">
+          </picture></figure>
+          <figure class="depo depo--img"><picture>
+            <source srcset="assets/depo-9.webp" type="image/webp">
+            <img src="assets/depo-9.jpg" width="1000" height="1250" loading="lazy" decoding="async"
+                 alt="Depoimento de Isabela Duarte, representante da Anela.">
+          </picture></figure>
         </div>
         <div class="setas">
           <button class="seta" type="button" data-seta="ant" aria-label="Depoimento anterior">
