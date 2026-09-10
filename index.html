@@ -467,6 +467,23 @@ strong,b{font-weight:700}
 .carrossel:not(.carrossel--fotos) .trilho > *{flex:0 0 min(90%,420px)}
 .depo--img{padding:0;overflow:hidden;background:var(--branco);min-height:0}
 .depo--img img{width:100%;height:auto;display:block}
+
+/* M8 — 2a FILEIRA: depoimentos em VIDEO, logo abaixo da fileira de imagens.
+   O cartao e 9/16, entao NAO pode herdar os 420px da fileira de imagens
+   (viraria ~750px de altura). Largura propria, menor.
+   ⚠️ A largura fica no ITEM do flex (`.trilho > *`), explicita em toda
+   largura de tela — foi a falta disso que fez a caixa do video COLAPSAR
+   ao tocar, no bug medido em 31/08 (oficina 5.2). Nao remover. */
+.carrossel--depovideo{margin-top:clamp(22px,3vw,32px)}
+/* ⚠️ DOIS nomes de classe de proposito. Com um so (`.carrossel--depovideo
+   .trilho > *`) esta regra PERDE pra `.carrossel:not(.carrossel--fotos)
+   .trilho > *`, que tem especificidade maior — e o cartao 9/16 herdava os
+   420px da fileira de imagens, virando 418x743 no desktop. Medido no
+   Playwright em 10/09; nao reduzir para uma classe so. */
+.carrossel.carrossel--depovideo .trilho > *{flex:0 0 min(68%,260px)}
+.depo--video{padding:0;overflow:hidden;background:var(--branco);min-height:0;gap:0}
+.depo--video .video{border-radius:0;outline:0}
+.depo--video figcaption{padding:14px 16px 16px}
 .setas{display:flex;gap:10px;justify-content:flex-end;margin-top:10px}
 .seta{
   width:44px;height:44px;border-radius:50%;
@@ -954,6 +971,22 @@ strong,b{font-weight:700}
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
           </button>
         </div>
+
+        <!-- 2a FILEIRA — depoimentos em VIDEO (fica ESCONDIDA enquanto a lista
+             DEPOIMENTOS_VIDEO estiver vazia; o JS mostra e preenche).        -->
+        <div class="carrossel carrossel--depovideo" id="bloco-depo-video" hidden>
+          <div class="trilho" id="trilho-video" tabindex="0" role="group"
+               aria-label="Depoimentos em vídeo de representantes. Arraste para o lado para ver mais.">
+          </div>
+          <div class="setas">
+            <button class="seta" type="button" data-seta="ant" aria-label="Depoimento em vídeo anterior">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
+            </button>
+            <button class="seta" type="button" data-seta="prox" aria-label="Próximo depoimento em vídeo">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1103,6 +1136,26 @@ strong,b{font-weight:700}
         o carrossel mostra os 3 cartoes placeholder que estao no HTML.  */
   var DEPOIMENTOS = [
     // { id:'xxxxxxxxxxx', nome:'Nome da rep', cidade:'Campinas, SP', frase:'...' },
+  ];
+
+  /* 4. Depoimentos em VIDEO — a 2a FILEIRA do M8, embaixo das imagens.
+        Sao os MESMOS depoimentos, so que filmados. As 9 imagens ficam
+        onde estao (fileira de cima) e NAO sao tocadas por esta lista.
+
+        Enquanto esta lista estiver VAZIA, a fileira inteira fica
+        escondida — nao aparece carrossel vazio na pagina.
+
+        `id` = o que vem depois de "watch?v=" no link do YouTube.
+        Video NAO-LISTADO funciona; RASCUNHO nao (oficina 5.1).          */
+  var DEPOIMENTOS_VIDEO = [
+    // { id:'xxxxxxxxxxx', nome:'Nome da rep', cidade:'Campinas, SP' },
+    // `nome`/`cidade` sao OPCIONAIS: sem eles o cartao mostra so o video.
+    // Nao preencher por conta propria — o rotulo e do dono (oficina 2.4).
+    // A ORDEM AQUI e a ordem na tela. Pra trocar, troca a ordem das linhas.
+    { id:'uWJIhI0JDwc' },   // "Depoimento Francisca"
+    { id:'HxYKasEVXWc' },   // "Premiacoes" — e o Welleton falando (confirmado 10/09)
+    { id:'G1ATd_cgURo' },   // "Paty"
+    { id:'TEO76H9tus0' },   // "Carol"
   ];
 
   /* ═════════════════════ daqui pra baixo nao precisa mexer ══════════ */
@@ -1346,6 +1399,74 @@ strong,b{font-weight:700}
       fig.appendChild(pe);
       trilho.appendChild(fig);
     });
+  })();
+
+  /* ─── DEPOIMENTOS EM VIDEO: a 2a fileira do M8 ───────────────────
+     Monta um cartao por item de DEPOIMENTOS_VIDEO, com a MESMA estrutura
+     dos outros videos da pagina: caixa <div class="video"> + fachada
+     <button> que SAI quando o iframe entra (nunca <iframe> dentro de
+     <button> — foi HTML invalido e quebrou o leitor de tela, oficina 5.2).
+     Lista vazia => a fileira continua `hidden`, sem carrossel vazio.   */
+  (function(){
+    var bloco  = doc.getElementById('bloco-depo-video');
+    var trilho = doc.getElementById('trilho-video');
+    if (!bloco || !trilho || !DEPOIMENTOS_VIDEO.length) return;
+
+    DEPOIMENTOS_VIDEO.forEach(function(d){
+      if (!d || !d.id) return;                 // sem id nao da pra embutir
+      var quem = d.nome || 'representante';
+
+      var fig = doc.createElement('figure');
+      fig.className = 'depo depo--video';
+
+      var caixa = doc.createElement('div');
+      caixa.className = 'video';
+
+      var botao = doc.createElement('button');
+      botao.type = 'button';
+      botao.className = 'video-fachada';
+      botao.setAttribute('aria-label', 'Assistir ao depoimento de ' + quem);
+
+      var capa = doc.createElement('img');
+      capa.src = 'https://i.ytimg.com/vi/' + d.id + '/hqdefault.jpg';
+      capa.loading = 'lazy';
+      capa.decoding = 'async';
+      capa.alt = '';                            // decorativa: o botao ja tem rotulo
+      botao.appendChild(capa);
+
+      var play = doc.createElement('span');
+      play.className = 'video-play';
+      play.setAttribute('aria-hidden', 'true');
+      play.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">' +
+                       '<path d="M8 5.2v13.6L19 12z"/></svg>';
+      botao.appendChild(play);
+
+      botao.addEventListener('click', function(){ tocar(caixa, d.id, false); });
+      caixa.appendChild(botao);
+      fig.appendChild(caixa);
+
+      // legenda so existe se houver texto — sem nome/cidade o cartao e so o
+      // video (nada de <figcaption> vazio ocupando espaco embaixo).
+      if (d.nome || d.cidade) {
+        var pe = doc.createElement('figcaption');
+        if (d.nome) {
+          var nome = doc.createElement('b');
+          nome.textContent = d.nome;
+          pe.appendChild(nome);
+        }
+        if (d.cidade) {
+          var cid = doc.createElement('span');
+          cid.textContent = d.cidade;
+          pe.appendChild(cid);
+        }
+        fig.appendChild(pe);
+      }
+
+      trilho.appendChild(fig);
+    });
+
+    // so revela se algum cartao entrou de fato (item sem id e ignorado acima)
+    if (trilho.children.length) bloco.hidden = false;
   })();
 
   /* ─── CARROSSEL: setas (funciona em qualquer .carrossel; arraste no touch e nativo) ─ */
