@@ -1177,6 +1177,12 @@ strong,b{font-weight:700}
   try { indicou = (new URLSearchParams(location.search).get('i') || '').trim().slice(0, 40); }
   catch (e) { indicou = ''; }
 
+  // ?origem=site = veio do banner "Seja representante" da loja (pedido da
+  // aba Marketing, 22/10). ?i= vence: indicacao e mais especifica.
+  var doSite = false;
+  try { doSite = new URLSearchParams(location.search).get('origem') === 'site'; }
+  catch (e) { doSite = false; }
+
   var texto;
   if (indicou) {
     // so personaliza o texto do WhatsApp (nao muda copy na tela): o nome
@@ -1189,6 +1195,8 @@ strong,b{font-weight:700}
       });
     } catch (e) { nome = indicou; }
     texto = 'Oi! Vim pela página, indicada por ' + nome + '. Quero saber se tenho o perfil.';
+  } else if (doSite) {
+    texto = 'Oi! Vim pela página do site da loja e quero saber se tenho o perfil pra ser representante.';
   } else {
     texto = 'Oi! Vim pela página e quero saber se tenho o perfil pra ser representante.';
   }
@@ -1196,7 +1204,7 @@ strong,b{font-weight:700}
   /* O href JA sai pronto no HTML (caminho padrao) -> o CTA funciona sem JS.
      O JS so SOBRESCREVE quando ha ?i=<rep>, pra por o texto de indicacao.  */
   var CTAS = ['cta-topo','cta-m3','cta-meio','cta-m5','cta-m6','cta-m9','cta-fim','cta-barra'];
-  if (indicou) {
+  if (indicou || doSite) {
     var link = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(texto);
     CTAS.forEach(function(id){
       var el = doc.getElementById(id);
