@@ -1177,11 +1177,19 @@ strong,b{font-weight:700}
   try { indicou = (new URLSearchParams(location.search).get('i') || '').trim().slice(0, 40); }
   catch (e) { indicou = ''; }
 
-  // ?origem=site = veio do banner "Seja representante" da loja (pedido da
-  // aba Marketing, 22/10). ?i= vence: indicacao e mais especifica.
-  var doSite = false;
-  try { doSite = new URLSearchParams(location.search).get('origem') === 'site'; }
-  catch (e) { doSite = false; }
+  // ?origem=<canal> diz de onde ela veio (pedidos da aba Marketing, 22/10):
+  // site = banner da loja · instagram = bio · anuncio = anuncio de representante
+  // (texto padrao) · retorno = ja esta na conversa e voltou.
+  // Valor desconhecido = texto padrao. ?i= vence tudo: indicacao e mais especifica.
+  var ORIGENS = {
+    site: 'Oi! Vim pela página do site da loja e quero saber se tenho o perfil pra ser representante.',
+    instagram: 'Oi! Vim pela página, pelo Instagram, e quero saber se tenho o perfil pra ser representante.',
+    retorno: 'Oi! Voltei pela página e quero continuar a conversa sobre ser representante.'
+  };
+  var origem = '';
+  try { origem = (new URLSearchParams(location.search).get('origem') || '').trim().toLowerCase().slice(0, 20); }
+  catch (e) { origem = ''; }
+  var textoOrigem = Object.prototype.hasOwnProperty.call(ORIGENS, origem) ? ORIGENS[origem] : '';
 
   var texto;
   if (indicou) {
@@ -1195,16 +1203,16 @@ strong,b{font-weight:700}
       });
     } catch (e) { nome = indicou; }
     texto = 'Oi! Vim pela página, indicada por ' + nome + '. Quero saber se tenho o perfil.';
-  } else if (doSite) {
-    texto = 'Oi! Vim pela página do site da loja e quero saber se tenho o perfil pra ser representante.';
+  } else if (textoOrigem) {
+    texto = textoOrigem;
   } else {
     texto = 'Oi! Vim pela página e quero saber se tenho o perfil pra ser representante.';
   }
 
   /* O href JA sai pronto no HTML (caminho padrao) -> o CTA funciona sem JS.
-     O JS so SOBRESCREVE quando ha ?i=<rep>, pra por o texto de indicacao.  */
+     O JS so SOBRESCREVE quando ha ?i=<rep> ou ?origem= conhecida.          */
   var CTAS = ['cta-topo','cta-m3','cta-meio','cta-m5','cta-m6','cta-m9','cta-fim','cta-barra'];
-  if (indicou || doSite) {
+  if (indicou || textoOrigem) {
     var link = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(texto);
     CTAS.forEach(function(id){
       var el = doc.getElementById(id);
@@ -1220,6 +1228,7 @@ strong,b{font-weight:700}
   function bater(){
     try {
       var u = '/hit?i=' + encodeURIComponent(indicou) +
+              '&o=' + encodeURIComponent(origem) +
               '&r=' + Math.random().toString(36).slice(2, 8);
       if (navigator.sendBeacon) navigator.sendBeacon(u);
       else { var img = new Image(); img.src = u; }
